@@ -2,6 +2,8 @@ from sklearn.datasets import make_regression
 import matplotlib.pyplot as plt
 import numpy as np
 
+from sklearn.metrics import r2_score
+
 X,Y = make_regression(n_samples=100, n_features = 1, n_informative = 1, n_targets = 1, noise = 20)
 
 from sklearn.linear_model import LinearRegression
@@ -35,4 +37,16 @@ gd.fit(X_train, y_train)
 print(y_pred[0])
 
 print(gd.predict(X_test[0]))
+
+print(y_pred[4])
+
+print(gd.predict(X_test[4]))
+
+print(type(y_test))
+y_pred_GD = np.empty(X_test.shape[0])
+
+for i in range(X_test.shape[0]):
+    y_pred_GD[i] = gd.predict(X_test[i])
+
+print("Acurracy" , r2_score(y_pred_GD, y_test))
 
